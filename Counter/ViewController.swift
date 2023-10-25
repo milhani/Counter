@@ -27,6 +27,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         counterTextView.text = "История изменений:\n\n"
+        counterLabel.text = "Значение счётчика: \(counter)"
+    }
+    
+    private func scrolling() {
+        let range = NSMakeRange(counterTextView.text.count - 1, 0)
+        counterTextView.scrollRangeToVisible(range)
     }
 
     @IBAction func buttonDidClick() {
@@ -34,6 +40,7 @@ class ViewController: UIViewController {
         
         let timeString = dateFormatter.string(from: Date())
         counterTextView.text += "\(timeString): значение сброшено\n\n"
+        scrolling()
         
         counterLabel.text = "Значение счётчика: \(counter)"
     }
@@ -46,6 +53,7 @@ class ViewController: UIViewController {
         } else {
             counterTextView.text += "\(timeString): попытка уменьшить значение счётчика ниже 0\n\n"
         }
+        scrolling()
         
         counterLabel.text = "Значение счётчика: \(counter)"
     }
@@ -56,6 +64,7 @@ class ViewController: UIViewController {
         
         let timeString = dateFormatter.string(from: Date())
         counterTextView.text += "\(timeString): значение изменено на +1\n\n"
+        scrolling()
         
         counterLabel.text = "Значение счётчика: \(counter)"
     }
